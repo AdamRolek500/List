@@ -1,0 +1,14 @@
+
+*.properties
+*.xml
+*.mf
+*.png
+*.gif
+*.jnlp
+dist/List.jar
+dist/List.html
+build/classes/list/List.class
+build/classes/list/FXMLDocument.fxml
+build/classes/list/FXMLDocumentController.class
+build/classes/list/Item.class
+dist/web-files/dtjava.js
