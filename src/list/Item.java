@@ -1,5 +1,6 @@
 package list;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Item {
@@ -7,10 +8,13 @@ public class Item {
     private final Date start;
     private Date end;
 
-    public Item(String des, Date end) {
+    public Item(String des, int days) {
         this.des = des;
         this.start = new Date();
-        this.end = end;
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date()); //getting todays date
+        c.add(Calendar.DATE, days); // Adding days.
+        this.end = c.getTime();
     }
 
     public Date getEnd() {
@@ -35,7 +39,15 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" + "des=" + des + ", start=" + start + ", end=" + end + '}';
+        String s = start.toString().substring(0, start.toString().indexOf(' ', 
+                1 + start.toString().indexOf(' ', 1 + start.toString()
+                        .indexOf(' ')))); // long ass confusing shit
+        String e = end.toString().substring(0, end.toString().indexOf(' ', 1 + 
+                end.toString().indexOf(' ', 1 + end.toString().indexOf(' '))));
+                // more long ass confusing shit
+                // Used to remove timestamp from date string
+        return des + " , start = " + s + " , end = " + e;
+        //return start.toString();
     }
     
 }

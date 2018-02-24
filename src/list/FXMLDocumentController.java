@@ -10,10 +10,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -23,24 +31,47 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Label label;
+    @FXML
+    private TextField taskDes;
+    @FXML
+    private TextField taskLen;
+    @FXML
+    private ListView<CheckBox> taskList;
+    private ArrayList<Item> list = new ArrayList<>();
+    private ObservableList<CheckBox> buttons
+            = FXCollections.observableArrayList();
 
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        Calendar c = Calendar.getInstance();
+    private void addTask(ActionEvent event) {
+        list.add(new Item(taskDes.getText(), Integer.parseInt(taskLen.getText())));
+        label.setText("Task Added!");
+        buttons.clear();
+        for (int i = 0; i < list.size(); i++) {
+            CheckBox c = new CheckBox(list.get(i).toString());
+            buttons.add(c);
+        }
+    }
 
-        c.setTime(new Date()); // Now use today date.
-
-        c.add(Calendar.DATE, 15); // Adds 15 days
-        ArrayList<Item> list = new ArrayList<>();
-        list.add(new Item("Do it my dude", c.getTime()));
-        System.out.println(list.get(0).toString());
-        label.setText(list.get(0).toString());
+    @FXML
+    private void completeTask(ActionEvent event) {
+        label.setText("Nothing Was Selected!");
+        if (!list.isEmpty() && !buttons.isEmpty()) {
+            for (int i = 0; i < buttons.size(); i++) {
+                if (buttons.get(i).isSelected()) {
+                    buttons.remove(i);
+                    list.remove(i);
+                    label.setText("Task Completed!");
+                }
+            }
+        }else if (list.isEmpty() && buttons.isEmpty()){
+            label.setText("There Are No Tasks!");
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        taskList.setItems(buttons);
+        taskList.setMinWidth(700.0);
     }
 
 }
