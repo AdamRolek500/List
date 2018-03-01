@@ -11,21 +11,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import utils.fileIO;
 
 /**
  *
  * @author adamr
  */
-public class List extends Application {
-    
+public class List extends Application implements TaskInterface {
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
+    }
+
+    @Override
+    public void stop() {
+        fileIO out = new fileIO();
+        out.taskOut(TaskInterface.LIST);
     }
 
     /**
@@ -34,5 +41,5 @@ public class List extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

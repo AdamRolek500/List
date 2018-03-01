@@ -12,3 +12,6 @@ build/classes/list/FXMLDocument.fxml
 build/classes/list/FXMLDocumentController.class
 build/classes/list/Item.class
 dist/web-files/dtjava.js
+*.txt
+build/classes/utils/fileIO.class
+build/classes/list/TaskInterface.class
