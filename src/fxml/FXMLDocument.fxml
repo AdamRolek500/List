@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="350" prefWidth="500" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.FXMLDocumentController">
+    <children>
+        <TextField fx:id="taskDes" text="Task Description..." layoutX="10" layoutY="10" />
+        <TextField fx:id="taskLen" text="Task Length..." layoutX="10" layoutY="40" />
+        <Button layoutX="10" layoutY="70" text="Add task!" onAction="#addTask" fx:id="addButton" />
+        <Button layoutX="10" layoutY="100" text="Complete Task!" onAction="#completeTask" fx:id="completeButton" />
+        <Label layoutX="10" layoutY="130" minHeight="16" minWidth="69" fx:id="label" />
+        <ListView layoutX="170" layoutY="10" fx:id="taskList"></ListView>
+    </children>
+</AnchorPane>

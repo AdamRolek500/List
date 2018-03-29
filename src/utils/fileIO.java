@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import list.Item;
+import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 
 /**
  *
@@ -28,12 +23,11 @@ public class fileIO {
         }
     }
 
-    public void taskOut(ArrayList<Item> list) {
+    public void taskOut(ObservableList<CheckBox> list) {
         try {
             int i = 0;
-            for (Item list1 : list) {
-                out.print(list1.getDes() + " " + list1.getStart() + " "
-                        + list1.getEnd() + "\r\n");
+            for (CheckBox list1 : list) {
+                out.print(list1.toString() + "\r\n");
                 i++;
             }
             out.print(i);
